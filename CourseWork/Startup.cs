@@ -15,12 +15,13 @@ using Westwind.AspNetCore.Markdown;
 using System.Reflection;
 using System.Globalization;
 using Microsoft.Extensions.Localization;
+using CourseWork.Models.Contexts;
 
 namespace CourseWork
 {
     public class Startup
     {
-        public static Cloudinary cloudinary;
+        public static string[] fieldsDataTypes = new string[] { "text", "number", "checkbox", "date" };
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -31,8 +32,7 @@ namespace CourseWork
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string connection = Configuration.GetConnectionString("DefaultConnection");
-            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
+            services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
@@ -40,12 +40,13 @@ namespace CourseWork
                     options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
                 });
 
+            services.AddMvc().AddApplicationPart(typeof(MarkdownPageProcessorMiddleware).Assembly);
 
             services.AddMarkdown();
-            services.AddMvc().AddApplicationPart(typeof(MarkdownPageProcessorMiddleware).Assembly);
 
             services.AddSingleton<IMongoClient, MongoClient>(sp => new MongoClient(Configuration.GetConnectionString("MongoDb")));
             services.AddTransient<IMongoDBContext, MongoDBContext>();
+            MongoDBData.DataBaseName = Configuration.GetSection("MongoDBName").Value;
 
             var section = Configuration.GetSection("Cloudinary");
             CloudinaryImageUpload.Path = "maskecourse/images";
@@ -74,13 +75,10 @@ namespace CourseWork
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-            }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

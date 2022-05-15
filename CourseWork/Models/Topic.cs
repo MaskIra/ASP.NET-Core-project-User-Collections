@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CourseWork.Models
 {
@@ -6,6 +7,7 @@ namespace CourseWork.Models
     {
         public int Id { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
         public ICollection<Collection> Collections { get; set; }

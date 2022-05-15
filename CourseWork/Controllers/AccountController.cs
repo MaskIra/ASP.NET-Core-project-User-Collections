@@ -8,6 +8,7 @@ using System.Security.Claims;
 using Microsoft.EntityFrameworkCore;
 using CourseWork.Models;
 using CourseWork.ViewModels;
+using CourseWork.Models.Contexts;
 
 namespace CourseWork.Controllers
 {
@@ -28,7 +29,7 @@ namespace CourseWork.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -45,7 +46,7 @@ namespace CourseWork.Controllers
             return View(model);
         }
 
-        private User AddUser(RegisterModel model)
+        private User AddUser(RegisterViewModel model)
         {
             User user = new User
             {
@@ -69,7 +70,7 @@ namespace CourseWork.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login(LoginModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {

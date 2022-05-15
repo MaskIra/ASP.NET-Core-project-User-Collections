@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CourseWork.Models
 {
@@ -7,16 +8,20 @@ namespace CourseWork.Models
     {
         public int Id { get; set; }
 
+        [Required]
         public string Email { get; set; }
 
+        [Required]
         public string Password { get; set; }
 
         public DateTime Registration { get; set; }
 
         public DateTime Authorization { get; set; }
 
+        [Required]
         public string Role { get; set; }
 
+        [Required]
         public bool Blocked { get; set; }
 
         public ICollection<Collection> Collections { get; set; }

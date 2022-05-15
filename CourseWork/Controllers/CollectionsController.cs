@@ -9,23 +9,16 @@ using CourseWork.Models;
 using CourseWork.ViewModels;
 using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
-using System.Web;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using CourseWork.Infrastructures;
+using CourseWork.Models.Contexts;
 
 namespace CourseWork.Controllers
 {
     public class CollectionsController : Controller
     {
         private readonly ApplicationContext _context;
-        public static List<DataType> types = new List<DataType>()
-            {
-                new DataType("text","text"),
-                new DataType("number", "number"),
-                new DataType("checkbox","checkbox"),
-                new DataType("date","date")
-            };
 
         public CollectionsController(ApplicationContext context)
         {
@@ -35,8 +28,8 @@ namespace CourseWork.Controllers
         // GET: Collections
         public async Task<IActionResult> Index()
         {
-            var applicationContext = _context.Collections.Include(c => c.Topic).Include(c => c.User);
-            return View(await applicationContext.ToListAsync());
+            var allCollections = _context.Collections.Include(c => c.Topic).Include(c => c.User);
+            return View(await allCollections.ToListAsync());
         }
 
         // GET: Collections/Create
@@ -44,16 +37,14 @@ namespace CourseWork.Controllers
         {
             ViewData["TopicId"] = new SelectList(_context.Topics, "Id", "Name");
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["DataTypes"] = new SelectList(types, "Value", "Name");
+            ViewData["DataTypes"] = new SelectList(Startup.fieldsDataTypes);
             return View();
         }
 
         // POST: Collections/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,UserId,TopicId,Fields,Image")] CollectionFieldsModel collection)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,UserId,TopicId,Fields,Image")] CollectionFieldsViewModel collection)
         {
             if (ModelState.IsValid)
             {
@@ -72,7 +63,7 @@ namespace CourseWork.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        public Collection ExtractCollection(CollectionFieldsModel CollectionField)
+        public Collection ExtractCollection(CollectionFieldsViewModel CollectionField)
         {
             string PublicId;
             return new Collection()
@@ -87,7 +78,7 @@ namespace CourseWork.Controllers
                 ImagePublicId = PublicId
             };
         }
-        public void UpdateCollection(CollectionFieldsModel CollectionField, ref Collection collection)
+        public void UpdateCollection(CollectionFieldsViewModel CollectionField, ref Collection collection)
         {
             collection.Name = CollectionField.Name;
             collection.Description = CollectionField.Description;
@@ -96,7 +87,7 @@ namespace CourseWork.Controllers
             collection.TopicId = CollectionField.TopicId;
             collection.Topic = _context.Topics.Find(CollectionField.TopicId);
         }
-        public List<Field> ExtractFields(CollectionFieldsModel CollectionField)
+        public List<Field> ExtractFields(CollectionFieldsViewModel CollectionField)
         {
             List<Field> fields = new List<Field>();
             if (CollectionField.Fields != null)
@@ -182,14 +173,14 @@ namespace CourseWork.Controllers
 
             ViewData["TopicId"] = new SelectList(_context.Topics, "Id", "Name");
             ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
-            ViewData["DataTypes"] = new SelectList(types, "Value", "Name");
+            ViewData["DataTypes"] = new SelectList(Startup.fieldsDataTypes);
             ViewData["PreviousImage"] = collection.ImageURL;
             return View(ToCollectionFieldsModel(collection, fields));
         }
 
-        private CollectionFieldsModel ToCollectionFieldsModel(Collection collection, List<Field> fields)
+        private CollectionFieldsViewModel ToCollectionFieldsModel(Collection collection, List<Field> fields)
         {
-            return new CollectionFieldsModel()
+            return new CollectionFieldsViewModel()
             {
                 Id = collection.Id,
                 Name = collection.Name,
@@ -202,11 +193,9 @@ namespace CourseWork.Controllers
         }
 
         // POST: Collections/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,UserId,TopicId,Fields,Image")] CollectionFieldsModel collection)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,UserId,TopicId,Fields,Image")] CollectionFieldsViewModel collection)
         {
             if (id != collection.Id)
                 return NotFound();
@@ -237,18 +226,16 @@ namespace CourseWork.Controllers
                     foreach (var field in fields1)
                     {
                         _context.Fields.Remove(field);
-                        await _context.SaveChangesAsync();
                     }
+                    await _context.SaveChangesAsync();
 
                     var fields = ExtractFields(collection);
                     foreach (var field in fields)
                     {
                         _context.Add(field);
-                        await _context.SaveChangesAsync();
                     }
+                    await _context.SaveChangesAsync();
 
-                    //_context.Update(collection);
-                    //await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -261,29 +248,8 @@ namespace CourseWork.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //// GET: Collections/Delete/5
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var collection = await _context.Collections
-        //        .Include(c => c.Topic)
-        //        .Include(c => c.User)
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (collection == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(collection);
-        //}
-
-        //// POST: Collections/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
+        // POST: Collections/Delete/5
+        [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             var collection = await _context.Collections.FindAsync(id);

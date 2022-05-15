@@ -25,11 +25,13 @@
                 <li class="list-group-item">Topic: @Html.DisplayFor(modelItem => item.Topic.Name)</li>
             </ul>
             <div class="card-body">
-                <a asp-action="Edit" asp-route-id="@item.Id" class="card-link">Edit</a>
-                <a class="card-link" asp-action="Delete" asp-route-id="@item.Id">
-                    Delete
-                </a>
-
+                <form asp-action="Edit" asp-route-id="@item.Id" method="get" class="float-left">
+                    <button type="submit" id="submit" class="btn btn-outline-info">Edit</button>
+                </form>
+                <form asp-action="Delete" asp-route-id="@item.Id" class="float-right">
+                    <button type="submit" id="submit" class="btn btn-outline-info">Delete</button>
+                </form>
+                <br/><br/>
             </div>
         </div>
     }

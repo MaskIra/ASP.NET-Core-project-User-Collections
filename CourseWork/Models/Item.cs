@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
@@ -11,9 +12,11 @@ namespace CourseWork.Models
         [BsonRepresentation(BsonType.ObjectId)]
         public ObjectId Id { get; set; }
 
+        [Required]
         [BsonElement("CollectionId")]
         public int CollectionId { get; set; }
 
+        [Required]
         [BsonElement("Name")]
         public string Name { get; set; }
 

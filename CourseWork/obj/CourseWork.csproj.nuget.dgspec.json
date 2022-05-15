@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Desktop\\курсач\\2 Коллекции\\CourseWork\\CourseWork\\CourseWork.csproj": {}
+    "C:\\Users\\User\\Desktop\\CourseWork\\MaskCourse\\CourseWork\\CourseWork.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Desktop\\курсач\\2 Коллекции\\CourseWork\\CourseWork\\CourseWork.csproj": {
+    "C:\\Users\\User\\Desktop\\CourseWork\\MaskCourse\\CourseWork\\CourseWork.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Desktop\\курсач\\2 Коллекции\\CourseWork\\CourseWork\\CourseWork.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\CourseWork\\MaskCourse\\CourseWork\\CourseWork.csproj",
         "projectName": "CourseWork",
-        "projectPath": "C:\\Users\\User\\Desktop\\курсач\\2 Коллекции\\CourseWork\\CourseWork\\CourseWork.csproj",
+        "projectPath": "C:\\Users\\User\\Desktop\\CourseWork\\MaskCourse\\CourseWork\\CourseWork.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Desktop\\курсач\\2 Коллекции\\CourseWork\\CourseWork\\obj\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\CourseWork\\MaskCourse\\CourseWork\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

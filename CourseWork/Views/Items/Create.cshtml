@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-md-4">
         <form action="../Create" method="post">
-            @*asp-action="Create" asp-controller="Items"*@
+        @*<form asp-action="Create" controller="Items" method="post">*@
             <input type="hidden" asp-for="CollectionId" value="@Model.CollectionId" />
             <div class="form-group">
                 <label for="Name" class="control-label"></label>
@@ -24,12 +24,13 @@
                 {
                     i++;
 
-                    <div class="form-group">
-                        <label for="Fields[@i].Value" class="control-label">@field.Name</label>
-                        <input name="Fields[@i].Value" type="@field.Type" class="form-control" />
-                        <input name="Fields[@i].Type" type="hidden" value="@field.Type" />
-                        <input name="Fields[@i].Name" type="hidden" value="@field.Name" />
-                    </div>
+                <div class="form-group">
+                    <label for="Fields[@i].Value" class="control-label">@field.Name</label>
+                    <input name="Fields[@i].Value" type="@field.Type" @(field.Type == "checkbox" ? "value=True" :"") class="form-control" />
+                    <input name="Fields[@i].Value" type="hidden" value="False" />
+                    <input name="Fields[@i].Type" type="hidden" value="@field.Type" />
+                    <input name="Fields[@i].Name" type="hidden" value="@field.Name" />
+                </div>
                 }
             </div>
 

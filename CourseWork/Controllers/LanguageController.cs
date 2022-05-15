@@ -2,11 +2,6 @@
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace CourseWork.Controllers
 {
@@ -16,10 +11,8 @@ namespace CourseWork.Controllers
         {
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,
-                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(language)), new CookieOptions { Expires = DateTimeOffset.UtcNow.AddMonths(1) }
-                );
-
-            return RedirectToAction("Index", "Home");
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(language)), new CookieOptions { Expires = DateTimeOffset.UtcNow.AddMonths(1) });
+            return Redirect(Request.Headers["Referer"].ToString());
         }
     }
 }

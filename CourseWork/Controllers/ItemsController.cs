@@ -1,8 +1,8 @@
 ﻿using CourseWork.Interface;
 using CourseWork.Models;
+using CourseWork.Models.Contexts;
 using CourseWork.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using MongoDB.Bson;
 using System;
 using System.Collections.Generic;
@@ -37,6 +37,7 @@ namespace CourseWork.Controllers
         {
             IEnumerable<Item> items = await itemrepos.GetCollectionItems(id);
             ViewData["FieldsCollection"] = _context.Fields.Where(f => f.CollectionId == id);
+            ViewData["Id"] = id;
 
             return View(items);
         }
@@ -54,7 +55,6 @@ namespace CourseWork.Controllers
         private List<ViewField> ToFieldsType(List<Field> values)
         {
             List<ViewField> newViewFields = new List<ViewField>();
-            //CollectionsController.types
             foreach (var value in values)
             {
                 newViewFields.Add(new ViewField(value.Name, value.Type, null));
@@ -68,56 +68,52 @@ namespace CourseWork.Controllers
         {
             var id = await itemrepos.Create(ToItem(item));
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { id = item.CollectionId });
         }
 
         private Item ToItem(ItemViewModel item)
         {
-            return new Item()
+            Item newItem = new Item()
             {
-                Id = ObjectId.Parse(item.Id),
                 Name = item.Name,
                 CollectionId = item.CollectionId,
                 Fileds = ToFieldsType(item.Fields)
             };
+            if (item.Id != null)
+                newItem.Id = ObjectId.Parse(item.Id);
+            return newItem;
         }
 
         private Dictionary<string, object> ToFieldsType(List<ViewField> values)
         {
             Dictionary<string, object> newValues = new Dictionary<string, object>();
-            //CollectionsController.types(
-            foreach(var value in values)
+            if (values != null)
             {
-                object res = null;
-                if (value.Type == "date")
+                foreach (var value in values)
                 {
-                    res = DateTime.Parse(value.Value);
+                    object res = null;
+                    if (value.Type == "date")
+                    {
+                        res = DateTime.Parse(value.Value);
+                    }
+                    if (value.Type == "checkbox")
+                    {
+                        res = bool.Parse(value.Value);
+                    }
+                    if (value.Type == "number")
+                    {
+                        res = int.Parse(value.Value);
+                    }
+                    if (value.Type == "text")
+                    {
+                        res = value.Value;
+                    }
+                    newValues.Add(value.Name, res);
                 }
-                if (value.Type == "checkbox")
-                {
-                    res = true; // TODO: чекбокс воращает значение только если отмечен
-                }
-                if (value.Type == "number")
-                {
-                    res = int.Parse(value.Value);
-                }
-                if (value.Type == "text")
-                {
-                    res = value.Value;
-                }
-                newValues.Add(value.Name, res);
             }
 
             return newValues;
         }
-
-        //[HttpGet("{id}")]
-        //public async Task<IActionResult> Details(string id)
-        //{
-        //    var car = await itemrepos.Get(ObjectId.Parse(id));
-
-        //    return new JsonResult(car);
-        //}
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Edit(string id)
@@ -140,7 +136,7 @@ namespace CourseWork.Controllers
             Item item = ToItem(viewitem);
             var result = await itemrepos.Update(item.Id, item);
 
-            return new JsonResult(null);
+            return RedirectToAction("Index", new { id = item.CollectionId });
         }
 
         private List<ViewField> ToFieldsType(List<Field> fields, Dictionary<string, object> values)
@@ -152,19 +148,21 @@ namespace CourseWork.Controllers
                 if (field.Type == "date")
                 {
                     value = value.Substring(0,10);
+                    value = DateTime.ParseExact(value, "dd/MM/yyyy", null).ToString("yyyy-MM-dd");
                 }
-                //newViewFields.Add(new ViewField(field.Name, field.Type, ));
+                newViewFields.Add(new ViewField(field.Name, field.Type, value));
             }
 
             return newViewFields;
         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(string id)
+        [HttpPost]
+        public async Task<IActionResult> Delete([FromForm] string id)
         {
-            //var result = await itemrepos.Delete(ObjectId.Parse(id));
+            int collectionId = (await itemrepos.Get(ObjectId.Parse(id))).CollectionId;
+            var result = await itemrepos.Delete(ObjectId.Parse(id));
 
-            return new JsonResult(null);
+            return RedirectToAction("Index", new { id = collectionId });
         }
     }
 }

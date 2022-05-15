@@ -7,17 +7,8 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-dark.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" class="alternate" />
     <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js"></script>
 </head>
 <body>
-    @*<script>
-        if (JSON.parse(localStorage.getItem("darkMode"))) {
-            document.querySelectorAll('link[rel=stylesheet].alternate')[0].disabled = true;
-        } else {
-            document.querySelectorAll('link[rel=stylesheet].alternate')[0].disabled = false;
-        }
-    </script>*@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
@@ -32,16 +23,20 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Collections" asp-action="Index">@localizer["Collections"]</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Collections" asp-action="Index">@langResource["My collections"]</a>
                         </li>
                     </ul>
-                    @Html.Partial("_LanguagePartial")
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item">
+                            @Html.ActionLink("EN", "Index", "Language", new { language = "en-US" }, new { @class = "nav-link text-dark" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("RU", "Index", "Language", new { language = "ru-RU" }, new { @class = "nav-link text-dark" })
+                        </li>
+                    </ul>
                     <div class="custom-control custom-switch">
                         <input type="checkbox" class="custom-control-input" id="darkSwitch" />
-                        <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+                        <label class="custom-control-label" for="darkSwitch">@langResource["Switch theme"]</label>
                     </div>
                 </div>
             </div>
@@ -55,12 +50,14 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - CourseWork - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - CourseWork - <a asp-area="" asp-controller="Home" asp-action="Index">@langResource["Home"]</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/darkLigthMode.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
