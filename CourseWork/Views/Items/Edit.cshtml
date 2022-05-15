@@ -1,0 +1,44 @@
+﻿@model CourseWork.ViewModels.ItemViewModel
+
+@{
+    ViewData["Title"] = "Edit item";
+}
+
+
+<h4>Edit item</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+            <form action="../Edit" method="post">
+            @*asp-action="Create" asp-controller="Items"*@
+            <input type="hidden" asp-for="CollectionId" value="@Model.CollectionId" />
+            <input type="hidden" asp-for="Id" value="@Model.Id" />
+            <div class="form-group">
+                <label for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div id="otherFields" class="form-group">
+                @{ int i = -1; }
+                @foreach (var field in Model.Fields)
+                {
+                    i++;
+
+                    <div class="form-group">
+                        <label for="Fields[@i].Value" class="control-label">@field.Name</label>
+                        <input name="Fields[@i].Value" type="@field.Type" class="form-control" @(field.Type == "checkbox" && field.Value.ToString() == "True" ? "checked" : "value=" + @field.Value) />
+                        <input name="Fields[@i].Type" type="hidden" value="@field.Type" />
+                        <input name="Fields[@i].Name" type="hidden" value="@field.Name" />
+                    </div>
+                }
+            </div>
+
+            <div class="form-group">
+                <input type="submit" id="submit" value="Save changes" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}}

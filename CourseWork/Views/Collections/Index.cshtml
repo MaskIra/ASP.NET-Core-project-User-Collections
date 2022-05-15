@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CourseWork.Models.Collection>
+@using Westwind.AspNetCore.Markdown;
+
+@{
+    ViewData["Title"] = "My collections";
+}
+
+<p>
+    <a class="btn btn-primary" role="button" asp-action="Create">Create New</a>
+</p>
+<div class="card-columns">
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <div class="media position-relative">
+                <div class="p-3">
+                    <img class="card-img-top" src="@Html.Raw(item.ImageURL)" alt="@Html.Raw(item.ImageURL)">
+                    <h3 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h3>
+                    <p class="card-text h6">@Markdown.ParseHtmlString(item.Description)</p>
+                </div>
+                <a asp-action="Index" asp-controller="Items" asp-route-id="@item.Id" class="stretched-link"></a>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">User: @Html.DisplayFor(modelItem => item.User.Email)</li>
+                <li class="list-group-item">Topic: @Html.DisplayFor(modelItem => item.Topic.Name)</li>
+            </ul>
+            <div class="card-body">
+                <a asp-action="Edit" asp-route-id="@item.Id" class="card-link">Edit</a>
+                <a class="card-link" asp-action="Delete" asp-route-id="@item.Id">
+                    Delete
+                </a>
+
+            </div>
+        </div>
+    }
+</div>

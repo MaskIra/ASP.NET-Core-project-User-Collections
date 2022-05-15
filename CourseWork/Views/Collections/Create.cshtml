@@ -1,0 +1,145 @@
+﻿@model CourseWork.ViewModels.CollectionFieldsModel
+
+@{
+    ViewData["Title"] = "Create new collection";
+}
+
+
+<h4>New collection</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data" class="myDropzone" id="myDropzone">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TopicId" class="control-label">Topic</label>
+                <select asp-for="TopicId" class="form-control" asp-items="ViewBag.TopicId"></select>
+            </div>
+
+            <div id="fields" class="form-group"></div>
+
+            <div>
+                <div id="previews" class="dz-default dz-message box__input dropzone border border-primary">
+                    <div style="text-align:center;" class="m-5">
+                        <i class="fa fa-cloud-upload" style="font-size:23px;position:relative;top:4px;"></i> <span style="margin-left:20px">Drop files  to attach or browse</span>
+                    </div>
+                </div>
+                <div id="previewFiles" class="m-3"></div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" id="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+        <input type="button" value="Add new field" onclick="addField()" class="btn btn-outline-primary" />
+    </div>
+</div>
+
+<template id="field">
+    <div>
+        <hr />
+        <div class="form-group">
+            <label class="control-label">Field name</label>
+            <input type="text" class="form-control" id="fieldname" />
+        </div>
+        <div class="form-group">
+            <label class="control-label">Field type</label>
+            <select class="form-control" asp-items="ViewBag.DataTypes" id="fieldselect"></select>
+        </div>
+        <input id="fieldbtn0" type="button" value="Remove" onclick="RemoveTemplate(this)" class="btn btn-outline-primary" />
+    </div>
+</template>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <link rel="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.js"></script>
+    <script>
+        $(document).ready(function () {
+            Dropzone.autoDiscover = false;
+            $('#myDropzone').dropzone({
+                //parameter name value
+                paramName: "Image",
+                //clickable div id
+                clickable: '#previews',
+                //preview files container Id
+                previewsContainer: "#previewFiles",
+                autoProcessQueue: false,
+                uploadMultiple: false,
+                parallelUploads: 1,
+                maxFiles: 1,
+                //  url:"/", // url here to save file
+                maxFilesize: 100,//max file size in MB,
+                addRemoveLinks: true,
+                dictResponseError: 'Server not Configured',
+                acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg,.pdf",// use this to restrict file type
+                init: function () {
+                    var self = this;
+                    // config
+                    self.options.addRemoveLinks = true;
+                    self.options.dictRemoveFile = "Remove";
+                    //New file added
+                    self.on("addedfile", function (file) {
+                        console.log('new file added ', file);
+                        $('.dz-success-mark').hide();
+                        $('.dz-error-mark').hide();
+                        $('#previews').hide();
+                    });
+                    // Send file starts
+                    self.on("sending", function (file) {
+                        console.log('upload started', file);
+                        $('.meter').show();
+                    });
+
+                    // File upload Progress
+                    self.on("totaluploadprogress", function (progress) {
+                        console.log("progress ", progress);
+                        $('.roller').width(progress + '%');
+                    });
+
+                    self.on("queuecomplete", function (progress) {
+                        $('.meter').delay(999).slideUp(999);
+                    });
+
+                    // On removing file
+                    self.on("removedfile", function (file) {
+                        console.log(file);
+                        $('#previews').show();
+                    });
+
+                    $('#submit').on("click", function (e) {
+                        e.stopPropagation();
+                        // Validate form here if needed
+
+                        if (self.getQueuedFiles().length > 0) {
+                            self.processQueue();
+                        } else {
+                            self.uploadFiles([]);
+                        }
+                    });
+
+                    self.on("successmultiple", function (files, response) {
+                        // Gets triggered when the files have successfully been sent.
+                        // Redirect user or notify of success.
+
+                    });
+                }
+            });
+        })
+    </script>
+}
