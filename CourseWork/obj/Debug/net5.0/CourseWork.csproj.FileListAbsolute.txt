@@ -335,7 +335,6 @@ C:\Users\User\Desktop\курсач\2 Коллекции\CourseWork\CourseWork\ob
 C:\Users\User\Desktop\курсач\2 Коллекции\CourseWork\CourseWork\obj\Debug\net5.0\CourseWork.genruntimeconfig.cache
 C:\Users\User\Desktop\курсач\2 Коллекции\CourseWork\CourseWork\obj\Debug\net5.0\CourseWork.csproj.AssemblyReference.cache
 C:\Users\User\Desktop\CourseWork\MaskCourse\CourseWork\obj\Debug\net5.0\CourseWork.csproj.AssemblyReference.cache
-C:\Users\User\Desktop\CourseWork\MaskCourse\CourseWork\obj\Debug\net5.0\CourseWork.Resources.DisplayForAttribute.resources
 C:\Users\User\Desktop\CourseWork\MaskCourse\CourseWork\obj\Debug\net5.0\CourseWork.Resources.LangResource.en-US.resources
 C:\Users\User\Desktop\CourseWork\MaskCourse\CourseWork\obj\Debug\net5.0\CourseWork.Resources.LangResource.ru-RU.resources
 C:\Users\User\Desktop\CourseWork\MaskCourse\CourseWork\obj\Debug\net5.0\CourseWork.csproj.GenerateResource.cache

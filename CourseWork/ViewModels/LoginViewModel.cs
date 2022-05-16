@@ -8,10 +8,10 @@ namespace CourseWork.ViewModels
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessage = "email not specified")]
+        [Required(ErrorMessage = "Email error")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "password not specified")]
+        [Required(ErrorMessage = "Password error")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }

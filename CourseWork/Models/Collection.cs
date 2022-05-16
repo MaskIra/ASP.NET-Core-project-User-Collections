@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using CourseWork.Resources;
 
 namespace CourseWork.Models
 {
@@ -7,15 +6,13 @@ namespace CourseWork.Models
     {
         public int Id { get; set; }
 
-        //[Display(Name = ResourceKeys.CollectionName, ResourceType = typeof(Resources.DisplayForAttribute))]
-        //[Required(ErrorMessageResourceName = "Error collection name", ErrorMessageResourceType = typeof(LangResource))]
-
-        [Required(ErrorMessage = "Collection name is requade")]
+        [Required(ErrorMessage = "Error collection name")]
         public string Name { get; set; }
 
         [Display(Name = "Collection description")]
         public string Description { get; set; }
 
+        [Required]
         public int UserId { get; set; }
 
         public User User { get; set; }

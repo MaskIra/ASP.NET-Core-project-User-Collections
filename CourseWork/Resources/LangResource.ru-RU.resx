@@ -120,6 +120,15 @@
   <data name="Add new field" xml:space="preserve">
     <value>Добавить опциональное поле</value>
   </data>
+  <data name="Collection description" xml:space="preserve">
+    <value>Описание (опционально)</value>
+  </data>
+  <data name="Collection ImageURL" xml:space="preserve">
+    <value>Изображение</value>
+  </data>
+  <data name="Collection name" xml:space="preserve">
+    <value>Название</value>
+  </data>
   <data name="Collections" xml:space="preserve">
     <value>Коллекции</value>
   </data>
@@ -150,8 +159,35 @@
   <data name="Edit item" xml:space="preserve">
     <value>Изменить элемент коллекции</value>
   </data>
+  <data name="Email enter" xml:space="preserve">
+    <value>Введите email</value>
+  </data>
+  <data name="Email error" xml:space="preserve">
+    <value>Необходимо указать почту</value>
+  </data>
+  <data name="Email name" xml:space="preserve">
+    <value>Email пользователя</value>
+  </data>
+  <data name="Error collection name" xml:space="preserve">
+    <value>Необходимо заполнить название коллекции</value>
+  </data>
+  <data name="Field name" xml:space="preserve">
+    <value>Название поля</value>
+  </data>
+  <data name="Field name error" xml:space="preserve">
+    <value>Необходимо указать название поля</value>
+  </data>
+  <data name="Field type" xml:space="preserve">
+    <value>Тип поля</value>
+  </data>
+  <data name="Field type error" xml:space="preserve">
+    <value>Необходимо указать тип поля</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Главная страница</value>
+  </data>
+  <data name="Item name" xml:space="preserve">
+    <value>Название</value>
   </data>
   <data name="Items" xml:space="preserve">
     <value>Элементы коллекции</value>
@@ -161,6 +197,18 @@
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Выйти</value>
+  </data>
+  <data name="Password confirm enter" xml:space="preserve">
+    <value>Повторите пароль</value>
+  </data>
+  <data name="Password confirm error" xml:space="preserve">
+    <value>Подтверждение пароля не совпадает</value>
+  </data>
+  <data name="Password enter" xml:space="preserve">
+    <value>Введите пароль</value>
+  </data>
+  <data name="Password error" xml:space="preserve">
+    <value>Необходимо указать пароль</value>
   </data>
   <data name="Previous image" xml:space="preserve">
     <value>Текущее изображение</value>
@@ -179,6 +227,9 @@
   </data>
   <data name="Switch theme" xml:space="preserve">
     <value>Тёмная тема</value>
+  </data>
+  <data name="Topic name" xml:space="preserve">
+    <value>Тема</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Добро пожаловать!</value>

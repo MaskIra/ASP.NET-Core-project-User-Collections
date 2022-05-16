@@ -8,10 +8,12 @@ namespace CourseWork.Models
     {
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Field name error")]
+        [Display(Name = "Field name")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Field type error")]
+        [Display(Name = "Field type")]
         public string Type { get; set; }
 
         [Required]

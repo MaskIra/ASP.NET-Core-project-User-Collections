@@ -179,4 +179,3 @@ C:\Users\User\Desktop\CourseWork\MaskCourse\CourseWork\obj\Release\net5.0\Course
 C:\Users\User\Desktop\CourseWork\MaskCourse\CourseWork\obj\Release\net5.0\ref\CourseWork.dll
 C:\Users\User\Desktop\CourseWork\MaskCourse\CourseWork\obj\Release\net5.0\CourseWork.pdb
 C:\Users\User\Desktop\CourseWork\MaskCourse\CourseWork\obj\Release\net5.0\CourseWork.genruntimeconfig.cache
-C:\Users\User\Desktop\CourseWork\MaskCourse\CourseWork\obj\Release\net5.0\CourseWork.Resources.DisplayForAttribute.resources

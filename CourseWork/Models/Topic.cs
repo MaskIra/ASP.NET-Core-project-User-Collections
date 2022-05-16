@@ -8,6 +8,7 @@ namespace CourseWork.Models
         public int Id { get; set; }
 
         [Required]
+        [Display(Name = "TopicName")]
         public string Name { get; set; }
     }
 }

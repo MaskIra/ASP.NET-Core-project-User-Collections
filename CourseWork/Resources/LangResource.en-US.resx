@@ -120,6 +120,15 @@
   <data name="Add new field" xml:space="preserve">
     <value>Add new field</value>
   </data>
+  <data name="Collection description" xml:space="preserve">
+    <value>Description (optional)</value>
+  </data>
+  <data name="Collection ImageURL" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="Collection name" xml:space="preserve">
+    <value>Name</value>
+  </data>
   <data name="Collections" xml:space="preserve">
     <value>Collections</value>
   </data>
@@ -150,8 +159,35 @@
   <data name="Edit item" xml:space="preserve">
     <value>Edit item</value>
   </data>
+  <data name="Email enter" xml:space="preserve">
+    <value>Enter email</value>
+  </data>
+  <data name="Email error" xml:space="preserve">
+    <value>Email is required</value>
+  </data>
+  <data name="Email name" xml:space="preserve">
+    <value>Email name</value>
+  </data>
+  <data name="Error collection name" xml:space="preserve">
+    <value>Collection name is required</value>
+  </data>
+  <data name="Field name" xml:space="preserve">
+    <value>Field name</value>
+  </data>
+  <data name="Field name error" xml:space="preserve">
+    <value>Field name is required</value>
+  </data>
+  <data name="Field type" xml:space="preserve">
+    <value>Field type</value>
+  </data>
+  <data name="Field type error" xml:space="preserve">
+    <value>Field type  is required</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="Item name" xml:space="preserve">
+    <value>Name</value>
   </data>
   <data name="Items" xml:space="preserve">
     <value>Items</value>
@@ -161,6 +197,18 @@
   </data>
   <data name="Logout" xml:space="preserve">
     <value>Logout</value>
+  </data>
+  <data name="Password confirm enter" xml:space="preserve">
+    <value>Confirm password</value>
+  </data>
+  <data name="Password confirm error" xml:space="preserve">
+    <value>Password entered incorrectly</value>
+  </data>
+  <data name="Password enter" xml:space="preserve">
+    <value>Enter password</value>
+  </data>
+  <data name="Password error" xml:space="preserve">
+    <value>Password is required</value>
   </data>
   <data name="Previous image" xml:space="preserve">
     <value>Current image</value>
@@ -179,6 +227,9 @@
   </data>
   <data name="Switch theme" xml:space="preserve">
     <value>Dark mode</value>
+  </data>
+  <data name="Topic name" xml:space="preserve">
+    <value>Topic</value>
   </data>
   <data name="Welcome" xml:space="preserve">
     <value>Welcome</value>

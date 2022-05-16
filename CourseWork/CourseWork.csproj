@@ -18,18 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Resources\DisplayForAttribute.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>DisplayForAttribute.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Update="Resources\DisplayForAttribute.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>DisplayForAttribute.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Update="Resources\LangResource.en-US.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
     </EmbeddedResource>

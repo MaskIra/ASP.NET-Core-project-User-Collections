@@ -1,6 +1,7 @@
 ﻿using CourseWork.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,6 +13,7 @@ namespace CourseWork.ViewModels
 
         public int CollectionId { get; set; }
 
+        [Display(Name = "Item name")]
         public string Name { get; set; }
 
         public List<ViewField> Fields { get; set; }

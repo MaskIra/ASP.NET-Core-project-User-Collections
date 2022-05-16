@@ -11,19 +11,19 @@
         <form asp-action="Create" enctype="multipart/form-data" class="myDropzone" id="myDropzone">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label">@langResource["Collection name"]</label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
+                <label asp-for="Description" class="control-label">@langResource["Collection description"]</label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             @if (User.IsInRole("admin"))
             {
                 <div class="form-group">
-                    <label asp-for="UserId" class="control-label">User</label>
+                    <label asp-for="UserId" class="control-label">@langResource["Email name"]</label>
                     <select asp-for="UserId" class="form-control" asp-items="ViewBag.UserId"></select>
                 </div>
             }
@@ -32,7 +32,7 @@
                 <input type="hidden" value="@ViewData["UserId"]" name="UserId" id="UserId" />
             }
             <div class="form-group">
-                <label asp-for="TopicId" class="control-label">Topic</label>
+                <label asp-for="TopicId" class="control-label">@langResource["Topic name"]</label>
                 <select asp-for="TopicId" class="form-control" asp-items="ViewBag.TopicId"></select>
             </div>
 
@@ -59,11 +59,11 @@
     <div>
         <hr />
         <div class="form-group">
-            <label class="control-label">Field name</label>
+            <label class="control-label">@langResource["Field name"]</label>
             <input type="text" class="form-control" id="fieldname" />
         </div>
         <div class="form-group">
-            <label class="control-label">Field type</label>
+            <label class="control-label">@langResource["Field type"]</label>
             <select class="form-control" asp-items="ViewBag.DataTypes" id="fieldselect"></select>
         </div>
         <input id="fieldbtn0" type="button" value="@langResource["Remove"]" onclick="RemoveTemplate(this)" class="btn btn-outline-primary" />

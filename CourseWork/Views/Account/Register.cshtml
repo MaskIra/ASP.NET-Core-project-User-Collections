@@ -12,17 +12,17 @@
             <div class="validation" asp-validation-summary="ModelOnly"></div>
             <div>
                 <div>
-                    <label asp-for="Email" class="control-label">Enter Email</label><br />
+                    <label asp-for="Email" class="control-label">@langResource["Email enter"]</label><br />
                     <input type="text" asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" />
                 </div>
                 <div>
-                    <label asp-for="Password" class="control-label">Enter password</label><br />
+                    <label asp-for="Password" class="control-label">@langResource["Password enter"]</label><br />
                     <input asp-for="Password" class="form-control" />
                     <span asp-validation-for="Password" />
                 </div>
                 <div>
-                    <label asp-for="ConfirmPassword" class="control-label">Enter password</label><br />
+                    <label asp-for="ConfirmPassword" class="control-label">@langResource["Password confirm enter"]</label><br />
                     <input asp-for="ConfirmPassword" class="form-control" />
                     <span asp-validation-for="ConfirmPassword" />
                 </div>

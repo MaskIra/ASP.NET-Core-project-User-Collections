@@ -18,6 +18,7 @@ namespace CourseWork.Models
 
         [Required]
         [BsonElement("Name")]
+        [Display(Name = "Item name")]
         public string Name { get; set; }
 
         [BsonExtraElements]
