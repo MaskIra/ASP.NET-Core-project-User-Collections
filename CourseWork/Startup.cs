@@ -100,8 +100,8 @@ namespace CourseWork
 
             app.UseRouting();
 
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseMarkdown();
 

@@ -13,9 +13,12 @@ using System.IO;
 using Microsoft.AspNetCore.Http;
 using CourseWork.Infrastructures;
 using CourseWork.Models.Contexts;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace CourseWork.Controllers
 {
+    [Authorize]
     public class CollectionsController : Controller
     {
         private readonly ApplicationContext _context;
@@ -28,15 +31,24 @@ namespace CourseWork.Controllers
         // GET: Collections
         public async Task<IActionResult> Index()
         {
-            var allCollections = _context.Collections.Include(c => c.Topic).Include(c => c.User);
-            return View(await allCollections.ToListAsync());
+            var allCollections = _context.Collections.Include(c => c.Topic).Include(c => c.User).ToList();
+            if (User.FindFirst(ClaimsIdentity.DefaultRoleClaimType).Value == "user")
+            {
+                string email = User.FindFirst(ClaimsIdentity.DefaultNameClaimType).Value;
+                allCollections = allCollections.Where(c => c.User.Email == email).ToList();
+            }
+            return View(allCollections);
         }
 
         // GET: Collections/Create
         public IActionResult Create()
         {
+            string email = User.FindFirst(ClaimsIdentity.DefaultNameClaimType).Value;
             ViewData["TopicId"] = new SelectList(_context.Topics, "Id", "Name");
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
+            if (User.FindFirst(ClaimsIdentity.DefaultRoleClaimType).Value == "admin")
+                ViewData["UserId"] = new SelectList(_context.Users, "Id", "Email");
+            else
+                ViewData["UserId"] = _context.Users.Where(u => u.Email == email).First().Id;
             ViewData["DataTypes"] = new SelectList(Startup.fieldsDataTypes);
             return View();
         }
@@ -157,7 +169,6 @@ namespace CourseWork.Controllers
             var fields = _context.Fields.Where(f => f.CollectionId == id).ToList();
 
             ViewData["TopicId"] = new SelectList(_context.Topics, "Id", "Name");
-            ViewData["UserId"] = new SelectList(_context.Users, "Id", "Id");
             ViewData["DataTypes"] = new SelectList(Startup.fieldsDataTypes);
             ViewData["PreviousImage"] = collection.ImageURL;
             return View(ToCollectionFieldsModel(collection, fields));

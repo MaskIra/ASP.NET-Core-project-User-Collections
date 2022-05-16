@@ -23,7 +23,5 @@ namespace CourseWork.Models
 
         [Required]
         public bool Blocked { get; set; }
-
-        public ICollection<Collection> Collections { get; set; }
     }
 }

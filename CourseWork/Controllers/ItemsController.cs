@@ -2,6 +2,7 @@
 using CourseWork.Models;
 using CourseWork.Models.Contexts;
 using CourseWork.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Bson;
 using System;
@@ -13,6 +14,7 @@ namespace CourseWork.Controllers
 {
     [ApiController]
     [Route("{controller}/{action}/")]
+    [Authorize]
     public class ItemsController : Controller
     {
         private readonly IMongoDBContext itemrepos;
