@@ -117,37 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Collection description" xml:space="preserve">
-    <value>Description (markdown)</value>
+  <data name="Add new field" xml:space="preserve">
+    <value>Add new field</value>
   </data>
-  <data name="Collection ImageURL" xml:space="preserve">
-    <value>Optional image</value>
+  <data name="Collections" xml:space="preserve">
+    <value>Collections</value>
   </data>
-  <data name="CollectionName" xml:space="preserve">
-    <value>Name</value>
+  <data name="CourseWork" xml:space="preserve">
+    <value>Personal collections</value>
   </data>
-  <data name="Error collection name" xml:space="preserve">
-    <value>Name of collection is required</value>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
   </data>
-  <data name="Field name Title" xml:space="preserve">
-    <value>Field name</value>
+  <data name="Create collection" xml:space="preserve">
+    <value>New collection</value>
   </data>
-  <data name="Field type Title" xml:space="preserve">
-    <value>Field type</value>
+  <data name="Create collection button" xml:space="preserve">
+    <value>Create new collection</value>
+  </data>
+  <data name="Create item" xml:space="preserve">
+    <value>Create new item</value>
+  </data>
+  <data name="Delete button" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Edit button" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Edit collection" xml:space="preserve">
+    <value>Edit collection</value>
+  </data>
+  <data name="Edit item" xml:space="preserve">
+    <value>Edit item</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
   </data>
-  <data name="My collections" xml:space="preserve">
-    <value>My collections</value>
+  <data name="Items" xml:space="preserve">
+    <value>Items</value>
   </data>
-  <data name="New collection Title" xml:space="preserve">
-    <value>New collection</value>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Logout</value>
+  </data>
+  <data name="Previous image" xml:space="preserve">
+    <value>Current image</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="Remove image question" xml:space="preserve">
+    <value>Remove image?</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save changes</value>
   </data>
   <data name="Switch theme" xml:space="preserve">
-    <value>Switch theme</value>
+    <value>Dark mode</value>
   </data>
   <data name="Welcome" xml:space="preserve">
-    <value>Welcome!</value>
+    <value>Welcome</value>
   </data>
 </root>

@@ -117,10 +117,70 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CollectionName" xml:space="preserve">
-    <value>Имя</value>
+  <data name="Add new field" xml:space="preserve">
+    <value>Добавить опциональное поле</value>
   </data>
-  <data name="My collections" xml:space="preserve">
-    <value>Мои коллекции</value>
+  <data name="Collections" xml:space="preserve">
+    <value>Коллекции</value>
+  </data>
+  <data name="CourseWork" xml:space="preserve">
+    <value>Личные коллекции</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>Добавить</value>
+  </data>
+  <data name="Create collection" xml:space="preserve">
+    <value>Создание новой коллекции</value>
+  </data>
+  <data name="Create collection button" xml:space="preserve">
+    <value>Добавить новую коллекцию</value>
+  </data>
+  <data name="Create item" xml:space="preserve">
+    <value>Добавить новый элемент коллекции</value>
+  </data>
+  <data name="Delete button" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Edit button" xml:space="preserve">
+    <value>Изменить</value>
+  </data>
+  <data name="Edit collection" xml:space="preserve">
+    <value>Изменение коллекции</value>
+  </data>
+  <data name="Edit item" xml:space="preserve">
+    <value>Изменить элемент коллекции</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Главная страница</value>
+  </data>
+  <data name="Items" xml:space="preserve">
+    <value>Элементы коллекции</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Выйти</value>
+  </data>
+  <data name="Previous image" xml:space="preserve">
+    <value>Текущее изображение</value>
+  </data>
+  <data name="Registration" xml:space="preserve">
+    <value>Регистрация</value>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="Remove image question" xml:space="preserve">
+    <value>Удалить изображение коллекции?</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Сохранить изменения</value>
+  </data>
+  <data name="Switch theme" xml:space="preserve">
+    <value>Тёмная тема</value>
+  </data>
+  <data name="Welcome" xml:space="preserve">
+    <value>Добро пожаловать!</value>
   </data>
 </root>

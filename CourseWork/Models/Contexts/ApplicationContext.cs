@@ -19,18 +19,21 @@ namespace CourseWork.Models.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            setAdmin(modelBuilder);
+            SetAdmin(modelBuilder);
             base.OnModelCreating(modelBuilder);
         }
 
-        void setAdmin(ModelBuilder modelBuilder)
+        void SetAdmin(ModelBuilder modelBuilder)
         {
             User adminUser = new User { Id = 1, Email = "admin", Password = "admin", Role = "admin" };
             modelBuilder.Entity<User>().HasData(new User[] { adminUser });
 
-            Topic t = new Topic { Id = 1, Name = "Books" };
-            Topic tt = new Topic { Id = 2, Name = "All" };
-            modelBuilder.Entity<Topic>().HasData(new Topic[] { t, tt });
+            Topic topic1 = new Topic { Id = 1, Name = "All" };
+            Topic topic2 = new Topic { Id = 2, Name = "Books" };
+            Topic topic3 = new Topic { Id = 3, Name = "Alcohol" };
+            Topic topic4 = new Topic { Id = 4, Name = "Nature" };
+            Topic topic5 = new Topic { Id = 5, Name = "Animals" };
+            modelBuilder.Entity<Topic>().HasData(new Topic[] { topic1, topic2, topic3, topic4, topic5 });
         }
     }
 }

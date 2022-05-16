@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CourseWork</title>
+    <title>@ViewData["Title"] - @langResource["CourseWork"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-dark.min.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" class="alternate" />
     <link rel="stylesheet" href="~/css/site.css" />
@@ -12,7 +12,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">CourseWork</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">@langResource["CourseWork"]</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -23,19 +23,19 @@
                         @if (!Context.User.Identity.IsAuthenticated)
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">Login</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Login">@langResource["Login"]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">@langResource["Registration"]</a>
                             </li>
                         }
                         else
                         {
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Collections" asp-action="Index">@langResource["My collections"]</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Collections" asp-action="Index">@langResource["Collections"]</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">Logout</a>
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Logout">@langResource["Logout"]</a>
                             </li>
                         }
                     </ul>
@@ -63,7 +63,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - CourseWork - <a asp-area="" asp-controller="Home" asp-action="Index">@langResource["Home"]</a>
+            &copy; 2022 - @langResource["CourseWork"] - <a asp-area="" asp-controller="Home" asp-action="Index">@langResource["Home"]</a>
         </div>
     </footer>
 

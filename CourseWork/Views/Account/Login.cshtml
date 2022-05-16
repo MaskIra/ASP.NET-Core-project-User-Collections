@@ -1,6 +1,10 @@
 ﻿@model CourseWork.ViewModels.LoginViewModel
 
-<h4>Login</h4>
+@{
+    ViewData["Title"] = @langResource["Login"];
+}
+
+<h4>@langResource["Login"]</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -18,7 +22,7 @@
                     <span asp-validation-for="Password" />
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="Enter" class="btn btn-outline-primary" />
+                    <input type="submit" value="@langResource["Login"]" class="btn btn-outline-primary" />
                 </div>
             </div>
         </form>

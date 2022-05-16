@@ -2,11 +2,11 @@
 @using Westwind.AspNetCore.Markdown;
 
 @{
-    ViewData["Title"] = "My collections";
+    ViewData["Title"] = langResource["Collections"];
 }
 
 <p>
-    <a class="btn btn-primary" role="button" asp-action="Create">Create New</a>
+    <a class="btn btn-primary" role="button" asp-action="Create">@langResource["Create collection button"]</a>
 </p>
 <div class="card-columns">
     @foreach (var item in Model)
@@ -26,10 +26,10 @@
             </ul>
             <div class="card-body">
                 <form asp-action="Edit" asp-route-id="@item.Id" method="get" class="float-left">
-                    <button type="submit" id="submit" class="btn btn-outline-info">Edit</button>
+                    <button type="submit" id="submit" class="btn btn-outline-info">@langResource["Edit button"]</button>
                 </form>
                 <form asp-action="Delete" asp-route-id="@item.Id" class="float-right">
-                    <button type="submit" id="submit" class="btn btn-outline-info">Delete</button>
+                    <button type="submit" id="submit" class="btn btn-outline-info">@langResource["Delete button"]</button>
                 </form>
                 <br/><br/>
             </div>

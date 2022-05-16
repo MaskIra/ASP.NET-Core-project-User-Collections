@@ -1,10 +1,10 @@
 ﻿@model CourseWork.ViewModels.CollectionFieldsViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = langResource["Edit collection"];
 }
 
-<h4>Collection</h4>
+<h4>@langResource["Edit collection"]</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -42,7 +42,7 @@
                             <label asp-for="Fields[i].Type" class="control-label">Field type</label>
                             <select asp-for="Fields[i].Type" class="form-control" asp-items="ViewBag.DataTypes" id="fieldselect"></select>
                         </div>
-                        <input id="fieldbtn0" type="button" value="Remove" onclick="RemoveTemplate(this)" class="btn btn-outline-primary" />
+                        <input id="fieldbtn0" type="button" value="@langResource["Remove"]" onclick="RemoveTemplate(this)" class="btn btn-outline-primary" />
                     </div>
                 }
             </div>
@@ -58,24 +58,24 @@
             @if (ViewData["PreviousImage"] != null)
             {
                 <div class="form-group">
-                    <label for="PreviousImage" class="form-check-label control-label">Previous image</label>
+                    <label for="PreviousImage" class="form-check-label control-label">@langResource["Previous image"]</label>
                     <img id="PreviousImage" src="@ViewData["PreviousImage"].ToString()" class="rounded border" width="200" />
                 </div>
                 <div class="form-group" id="chb">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="True" name="deleteimage" id="deleteimage">
                         <label class="form-check-label" for="DeleteImage">
-                            Remove image?
+                            @langResource["Remove image question"]
                         </label>
                     </div>
                 </div>
             }
 
             <div class="form-group">
-                <input type="submit" id="submit" value="Save changes" class="btn btn-primary" />
+                <input type="submit" id="submit" value="@langResource["Save"]" class="btn btn-primary" />
             </div>
         </form>
-        <input value="Add new field" onclick="addField()" class="btn btn-outline-primary" />
+        <input type="button" value="@langResource["Add new field"]" onclick="addField()" class="btn btn-outline-primary" />
     </div>
 </div>
 
@@ -84,14 +84,14 @@
     <div>
         <hr />
         <div class="form-group">
-            <label class="control-label">@langResource["Field name Title"]</label>
+            <label class="control-label">Field name</label>
             <input type="text" class="form-control" id="fieldname" />
         </div>
         <div class="form-group">
-            <label class="control-label">@langResource["Field type Title"]</label>
+            <label class="control-label">Field type</label>
             <select class="form-control" asp-items="ViewBag.DataTypes" id="fieldselect"></select>
         </div>
-        <input id="fieldbtn0" type="button" value="Remove" onclick="RemoveTemplate(this)" class="btn btn-outline-primary" />
+        <input id="fieldbtn0" type="button" value="@langResource["Remove"]<" onclick="RemoveTemplate(this)" class="btn btn-outline-primary" />
     </div>
 </template>
 

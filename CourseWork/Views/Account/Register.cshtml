@@ -1,6 +1,10 @@
 ﻿@model CourseWork.ViewModels.RegisterViewModel
 
-<h4>Registration</h4>
+@{
+    ViewData["Title"] = @langResource["Registration"];
+}
+
+<h4>@langResource["Registration"]</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -8,23 +12,23 @@
             <div class="validation" asp-validation-summary="ModelOnly"></div>
             <div>
                 <div>
-                    <label asp-for="Email">Enter Email</label><br />
-                    <input type="text" asp-for="Email" />
+                    <label asp-for="Email" class="control-label">Enter Email</label><br />
+                    <input type="text" asp-for="Email" class="form-control" />
                     <span asp-validation-for="Email" />
                 </div>
                 <div>
-                    <label asp-for="Password">Enter password</label><br />
-                    <input asp-for="Password" />
+                    <label asp-for="Password" class="control-label">Enter password</label><br />
+                    <input asp-for="Password" class="form-control" />
                     <span asp-validation-for="Password" />
                 </div>
                 <div>
-                    <label asp-for="ConfirmPassword">Enter password</label><br />
-                    <input asp-for="ConfirmPassword" />
+                    <label asp-for="ConfirmPassword" class="control-label">Enter password</label><br />
+                    <input asp-for="ConfirmPassword" class="form-control" />
                     <span asp-validation-for="ConfirmPassword" />
                 </div>
                 <p></p>
                 <div class="form-group">
-                    <input type="submit" value="Registration" class="btn btn-outline-primary" />
+                    <input type="submit" value="@langResource["Registration"]" class="btn btn-outline-primary" />
                 </div>
             </div>
         </form>

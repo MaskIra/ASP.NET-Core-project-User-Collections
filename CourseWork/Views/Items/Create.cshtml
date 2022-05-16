@@ -1,16 +1,15 @@
 ﻿@model CourseWork.ViewModels.ItemViewModel
 
 @{
-    ViewData["Title"] = "Create new item";
+    ViewData["Title"] = langResource["Create item"];
 }
 
 
-<h4>New item</h4>
+<h4>@langResource["Create item"]</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form action="../Create" method="post">
-            @*<form asp-action="Create" controller="Items" method="post">*@
             <input type="hidden" asp-for="CollectionId" value="@Model.CollectionId" />
             <div class="form-group">
                 <label asp-for="Name" class=" control-label">Name</label>
@@ -35,7 +34,7 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" id="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" id="submit" value="@langResource["Create"]" class="btn btn-primary" />
             </div>
         </form>
     </div>
