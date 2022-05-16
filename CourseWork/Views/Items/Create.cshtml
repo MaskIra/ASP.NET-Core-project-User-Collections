@@ -25,7 +25,7 @@
 
                     <div class="form-group">
                         <label for="Fields[@i].Value" class="control-label">@field.Name</label>
-                        <input name="Fields[@i].Value" type="@field.Type" @(field.Type == "checkbox" ? "value=True" : "") class="form-control" />
+                        <input name="Fields[@i].Value" type="@field.Type" @(field.Type == "checkbox" ? "value=True" : "") @(field.Type == "number" ? "step=1" : "") class="form-control" />
                         <input name="Fields[@i].Value" type="hidden" value="False" />
                         <input name="Fields[@i].Type" type="hidden" value="@field.Type" />
                         <input name="Fields[@i].Name" type="hidden" value="@field.Name" />

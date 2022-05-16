@@ -63,14 +63,12 @@ namespace CourseWork.Controllers
                 var newCollection = ExtractCollection(collection);
                 _context.Add(newCollection);
                 await _context.SaveChangesAsync();
-                collection.Id = newCollection.Id;
 
+                collection.Id = newCollection.Id;
                 var fields = ExtractFields(collection);
                 foreach (var field in fields)
-                {
                     _context.Add(field);
-                    await _context.SaveChangesAsync();
-                }
+                await _context.SaveChangesAsync();
             }
             return RedirectToAction(nameof(Index));
         }
@@ -90,15 +88,7 @@ namespace CourseWork.Controllers
                 ImagePublicId = PublicId
             };
         }
-        public void UpdateCollection(CollectionFieldsViewModel CollectionField, ref Collection collection)
-        {
-            collection.Name = CollectionField.Name;
-            collection.Description = CollectionField.Description;
-            collection.UserId = CollectionField.UserId;
-            collection.User = _context.Users.Find(CollectionField.UserId);
-            collection.TopicId = CollectionField.TopicId;
-            collection.Topic = _context.Topics.Find(CollectionField.TopicId);
-        }
+
         public List<Field> ExtractFields(CollectionFieldsViewModel CollectionField)
         {
             List<Field> fields = new List<Field>();
@@ -117,29 +107,20 @@ namespace CourseWork.Controllers
             }
             return fields;
         }
+
         public string UploadImage(IFormFile image, out string PublicID)
         {
+            PublicID = null;
             if (image == null)
-            {
-                PublicID = null;
                 return null;
-            }
+
             try
             {
                 var cloudinary = new Cloudinary(CloudinaryImageUpload.Account);
                 cloudinary.Api.Secure = true;
 
-                byte[] bytes;
-                using (var memoryStream = new MemoryStream())
-                {
-                    image.CopyTo(memoryStream);
-                    bytes = memoryStream.ToArray();
-                }
-                string base64 = Convert.ToBase64String(bytes);
-
-
                 var prefix = @"data:image/png;base64,";
-                var imagePath = prefix + base64;
+                var imagePath = prefix + IFormFileTobase64(image);
 
                 var uploadParams = new ImageUploadParams()
                 {
@@ -157,6 +138,17 @@ namespace CourseWork.Controllers
             }
         }
 
+        private string IFormFileTobase64(IFormFile image)
+        {
+            byte[] bytes;
+            using (var memoryStream = new MemoryStream())
+            {
+                image.CopyTo(memoryStream);
+                bytes = memoryStream.ToArray();
+            }
+            return Convert.ToBase64String(bytes);
+        }
+
         // GET: Collections/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -166,11 +158,11 @@ namespace CourseWork.Controllers
             var collection = await _context.Collections.FindAsync(id);
             if (collection == null)
                 return NotFound();
-            var fields = _context.Fields.Where(f => f.CollectionId == id).ToList();
 
             ViewData["TopicId"] = new SelectList(_context.Topics, "Id", "Name");
             ViewData["DataTypes"] = new SelectList(Startup.fieldsDataTypes);
             ViewData["PreviousImage"] = collection.ImageURL;
+            var fields = _context.Fields.Where(f => f.CollectionId == id).ToList();
             return View(ToCollectionFieldsModel(collection, fields));
         }
 
@@ -243,6 +235,15 @@ namespace CourseWork.Controllers
                 }
             }
             return RedirectToAction(nameof(Index));
+        }
+        public void UpdateCollection(CollectionFieldsViewModel CollectionField, ref Collection collection)
+        {
+            collection.Name = CollectionField.Name;
+            collection.Description = CollectionField.Description;
+            collection.UserId = CollectionField.UserId;
+            collection.User = _context.Users.Find(CollectionField.UserId);
+            collection.TopicId = CollectionField.TopicId;
+            collection.Topic = _context.Topics.Find(CollectionField.TopicId);
         }
 
         // POST: Collections/Delete/5

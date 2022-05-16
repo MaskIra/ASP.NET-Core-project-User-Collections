@@ -1,6 +1,5 @@
 ﻿let mainContent;
 let btnName = 'fieldbtn';
-const btnIds = ['firstfieldbtn', 'secondfieldbtn', 'thirdfieldbtn'];
 const fullness = [false, false, false];
 
 addLoadEvent(function () {

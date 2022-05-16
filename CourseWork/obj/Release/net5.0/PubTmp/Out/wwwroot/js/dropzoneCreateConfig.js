@@ -9,7 +9,6 @@ $(document).ready(function () {
         parallelUploads: 1,
         maxFiles: 1,
         maxFilesize: 100, // MB
-        dictDefaultMessage: 'Change the text here!',
         addRemoveLinks: true,
         dictResponseError: 'Server not Configured',
         acceptedFiles: ".png,.jpg,.gif,.bmp,.jpeg",

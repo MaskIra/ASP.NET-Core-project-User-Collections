@@ -37,26 +37,30 @@
 
                         @foreach (var field in ViewBag.FieldsCollection)
                         {
-                            <td>
-                                @if (item.Fileds.ContainsKey(field.Name))
-                                {
-                                    @if (field.Type == "text")
-                                    {
-                                        @Markdown.ParseHtmlString(item.Fileds[field.Name])
-                                    }
-                                    else
-                                    {
-                                        if (field.Type == "checkbox")
-                                        {
-                                            <input type="checkbox" disabled readonly class="form-control" @(item.Fileds[field.Name].ToString() == "True" ? "checked" : "") />
-                                        }
-                                        else
-                                        {
-                                            @item.Fileds[field.Name]
-                                        }
-                                    }
-                                }
-                            </td>
+                    <td>
+                        @if (item.Fileds.ContainsKey(field.Name))
+                        {
+                            @if (field.Type == "text")
+                            {
+                                @Markdown.ParseHtmlString(item.Fileds[field.Name])
+                            }
+
+                            if (field.Type == "checkbox")
+                            {
+                                <input type="checkbox" disabled readonly class="form-control" @(item.Fileds[field.Name].ToString() == "True" ? "checked" : "") />
+                            }
+
+                            if (field.Type == "date")
+                            {
+                                @Convert.ToDateTime(item.Fileds[field.Name]).ToString("dd.mm.yyyy")
+                            }
+
+                            if (field.Type == "number")
+                            {
+                                @item.Fileds[field.Name]
+                            }
+                        }
+                    </td>
                         }
                         <td>
                             <form asp-action="Edit" asp-route-id="@item.Id" method="get" class="float-left">

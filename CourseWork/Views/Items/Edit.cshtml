@@ -4,12 +4,11 @@
     ViewData["Title"] = langResource["Edit item"];
 }
 
-
 <h4>@langResource["Edit item"]</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-            <form action="../Edit" method="post">
+        <form action="../Edit" method="post">
             <input type="hidden" asp-for="CollectionId" value="@Model.CollectionId" />
             <input type="hidden" asp-for="Id" value="@Model.Id" />
             <div class="form-group">
@@ -24,13 +23,13 @@
                 {
                     i++;
 
-                <div class="form-group">
-                    <label for="Fields[@i].Value" class="control-label">@field.Name</label>
-                    <input name="Fields[@i].Value" type="@field.Type" class="form-control" @(field.Value != null ? (field.Type == "checkbox" && field.Value.ToString() == "True" ? "checked value=True" : "value=True") : "value=True" ) />
-                    <input name="Fields[@i].Value" type="hidden" value="False" />
-                    <input name="Fields[@i].Type" type="hidden" value="@field.Type" />
-                    <input name="Fields[@i].Name" type="hidden" value="@field.Name" />
-                </div>
+                    <div class="form-group">
+                        <label for="Fields[@i].Value" class="control-label">@field.Name</label>
+                        <input name="Fields[@i].Value" type="@field.Type" class="form-control" @(field.Value != null ? "value=" + field.Value : "")  @(field.Type == "checkbox" && field.Value != null && field.Value.ToString() == "True" ? "checked value=True" : "value=True") @(field.Type == "number" ? "step=1" : "") />
+                        <input name="Fields[@i].Value" type="hidden" value="False" />
+                        <input name="Fields[@i].Type" type="hidden" value="@field.Type" />
+                        <input name="Fields[@i].Name" type="hidden" value="@field.Name" />
+                    </div>
                 }
             </div>
 

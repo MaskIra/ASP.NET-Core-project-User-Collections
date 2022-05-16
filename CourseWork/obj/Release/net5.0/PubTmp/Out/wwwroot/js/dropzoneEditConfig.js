@@ -8,7 +8,6 @@ $(document).ready(function () {
         uploadMultiple: false,
         parallelUploads: 1,
         maxFiles: 1,
-        //  url:"/", // url here to save file
         maxFilesize: 100, // MB
         addRemoveLinks: true,
         dictResponseError: 'Server not Configured',

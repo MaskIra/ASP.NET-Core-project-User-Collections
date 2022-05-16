@@ -58,9 +58,7 @@ namespace CourseWork.Controllers
         {
             List<ViewField> newViewFields = new List<ViewField>();
             foreach (var value in values)
-            {
                 newViewFields.Add(new ViewField(value.Name, value.Type, null));
-            }
 
             return newViewFields;
         }
@@ -68,9 +66,12 @@ namespace CourseWork.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromForm] ItemViewModel item)
         {
-            var id = await itemrepos.Create(ToItem(item));
-
-            return RedirectToAction("Index", new { id = item.CollectionId });
+            if (IsValid(item))
+            {
+                var id = await itemrepos.Create(ToItem(item));
+                return RedirectToAction("Index", new { id = item.CollectionId });
+            }
+            return RedirectToAction("Create", new { id = item.CollectionId });
         }
 
         private Item ToItem(ItemViewModel item)
