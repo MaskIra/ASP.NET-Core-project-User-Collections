@@ -38,13 +38,23 @@
                         @foreach (var field in ViewBag.FieldsCollection)
                         {
                             <td>
-                                @if (item.Fileds[field.Name].ToString() == "True" || item.Fileds[field.Name].ToString() == "False")
+                                @if (item.Fileds.ContainsKey(field.Name))
                                 {
-                                    <input type="checkbox" disabled readonly class="form-control" @(item.Fileds[field.Name].ToString() == "True" ? "checked" : "") />
-                                }
-                                else
-                                {
-                                    @item.Fileds[field.Name]
+                                    @if (field.Type == "text")
+                                    {
+                                        @Markdown.ParseHtmlString(item.Fileds[field.Name])
+                                    }
+                                    else
+                                    {
+                                        if (field.Type == "checkbox")
+                                        {
+                                            <input type="checkbox" disabled readonly class="form-control" @(item.Fileds[field.Name].ToString() == "True" ? "checked" : "") />
+                                        }
+                                        else
+                                        {
+                                            @item.Fileds[field.Name]
+                                        }
+                                    }
                                 }
                             </td>
                         }

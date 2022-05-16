@@ -38,7 +38,7 @@ namespace CourseWork.Controllers
         public async Task<IActionResult> Index(int id)
         {
             IEnumerable<Item> items = await itemrepos.GetCollectionItems(id);
-            ViewData["FieldsCollection"] = _context.Fields.Where(f => f.CollectionId == id);
+            ViewData["FieldsCollection"] = _context.Fields.Where(f => f.CollectionId == id).ToList();
             ViewData["Id"] = id;
 
             return View(items);
@@ -135,10 +135,26 @@ namespace CourseWork.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit([FromForm] ItemViewModel viewitem)
         {
-            Item item = ToItem(viewitem);
-            var result = await itemrepos.Update(item.Id, item);
+            if (IsValid(viewitem))
+            {
+                Item item = ToItem(viewitem);
+                var result = await itemrepos.Update(item.Id, item);
 
-            return RedirectToAction("Index", new { id = item.CollectionId });
+                return RedirectToAction("Index", new { id = item.CollectionId });
+            }
+            return RedirectToAction("Edit", new { id = viewitem.Id });
+        }
+
+        private bool IsValid(ItemViewModel viewitem)
+        {
+            if (viewitem.Name == null)
+                return false;
+            foreach (var f in viewitem.Fields)
+            {
+                if (f.Value == null || f.Type == null || f.Name == null)
+                    return false;
+            }
+            return true;
         }
 
         private List<ViewField> ToFieldsType(List<Field> fields, Dictionary<string, object> values)
@@ -146,12 +162,17 @@ namespace CourseWork.Controllers
             List<ViewField> newViewFields = new List<ViewField>();
             foreach (var field in fields)
             {
-                var value = values[field.Name];
-                if (field.Type == "date")
+                string val = null;
+                if (values.ContainsKey(field.Name))
                 {
-                    value = Convert.ToDateTime(value).Date.ToString("yyyy-MM-dd");
+                    var value = values[field.Name];
+                    if (field.Type == "date")
+                    {
+                        value = Convert.ToDateTime(value).Date.ToString("yyyy-MM-dd");
+                    }
+                    val = value.ToString();
                 }
-                newViewFields.Add(new ViewField(field.Name, field.Type, value.ToString()));
+                newViewFields.Add(new ViewField(field.Name, field.Type, val));
             }
 
             return newViewFields;

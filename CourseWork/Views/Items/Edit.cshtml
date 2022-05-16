@@ -13,7 +13,7 @@
             <input type="hidden" asp-for="CollectionId" value="@Model.CollectionId" />
             <input type="hidden" asp-for="Id" value="@Model.Id" />
             <div class="form-group">
-                <label for="Name" class="control-label"></label>
+                <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
@@ -26,7 +26,7 @@
 
                 <div class="form-group">
                     <label for="Fields[@i].Value" class="control-label">@field.Name</label>
-                    <input name="Fields[@i].Value" type="@field.Type" class="form-control" @(field.Type == "checkbox" && field.Value.ToString() == "True" ? "checked value=True" : "value=" + @field.Value) />
+                    <input name="Fields[@i].Value" type="@field.Type" class="form-control" @(field.Value != null ? (field.Type == "checkbox" && field.Value.ToString() == "True" ? "checked value=True" : "value=True") : "value=True" ) />
                     <input name="Fields[@i].Value" type="hidden" value="False" />
                     <input name="Fields[@i].Type" type="hidden" value="@field.Type" />
                     <input name="Fields[@i].Name" type="hidden" value="@field.Name" />
