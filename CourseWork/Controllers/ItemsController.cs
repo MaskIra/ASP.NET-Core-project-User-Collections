@@ -144,13 +144,12 @@ namespace CourseWork.Controllers
             List<ViewField> newViewFields = new List<ViewField>();
             foreach (var field in fields)
             {
-                string value = values[field.Name].ToString();
+                var value = values[field.Name];
                 if (field.Type == "date")
                 {
-                    value = value.Substring(0,10);
-                    value = DateTime.ParseExact(value, "dd/MM/yyyy", null).ToString("yyyy-MM-dd");
+                    value = Convert.ToDateTime(value).Date.ToString("yyyy-MM-dd");
                 }
-                newViewFields.Add(new ViewField(field.Name, field.Type, value));
+                newViewFields.Add(new ViewField(field.Name, field.Type, value.ToString()));
             }
 
             return newViewFields;

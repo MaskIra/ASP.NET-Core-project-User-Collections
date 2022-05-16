@@ -144,21 +144,6 @@ namespace CourseWork.Controllers
                 throw;
             }
         }
-        public void DeleteImage(string PublicID)
-        {
-            if (PublicID == null)
-                return;
-
-            try
-            {
-                var cloudinary = new Cloudinary(CloudinaryImageUpload.Account);
-                cloudinary.Destroy(new DeletionParams(PublicID));
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
 
         // GET: Collections/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -207,9 +192,10 @@ namespace CourseWork.Controllers
                     var newCollection = await _context.Collections.FindAsync(id);
                     UpdateCollection(collection, ref newCollection);
 
-                    if (collection.Image == null && string.IsNullOrWhiteSpace(HttpContext.Request.Form["deleteimage"]))
+                    if (collection.Image == null && !string.IsNullOrWhiteSpace(HttpContext.Request.Form["deleteimage"]))
                     {
-                        DeleteImage(newCollection.ImagePublicId);
+                        newCollection.ImageURL = null;
+                        newCollection.ImagePublicId = null;
                     }
                     if (collection.Image != null)
                     {
