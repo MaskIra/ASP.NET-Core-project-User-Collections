@@ -1,10 +1,10 @@
-### MaskCourse: http://maskcourse-001-site1.dtempurl.com/
- * Неаутентифицированным пользователи не доступно создание коллекий и айтемов
- * Администратор видит каждую страницу пользователя и каждую коллекцию как ее создатель-владелец (например, может отредактировать или создать от имени пользователя с его страницы новую коллекцию или добавить айтем и т.п.)
- * Только владелец или админ может управлять коллекцией (редактировать/добавлять/удалять)
- * Вход через регистрацию на сайте (существует один **админ: login admin, password admin**)
- * У каждого пользователя есть страница, на которой он управляет списком своих коллекий (можно добавить, удалить или отредактировать) и из которой можно перейти на страницу коллекции (там таблица с возможностью создать/удалить/редактировать айтем). У админа это страница всех коллекций
- * Коллекция (MSSQL): название, краткое описание (markdown), тема из фиксированного набора, опциональное изображение (хранится в облаке, загружается drag-n-drop-ом)
- * Помимо этого, у коллекции есть возможность указать поля, которые будут у каждого айтема (MongoDB) в ней (без тегов). Текстовое поле — поле с форматирование markdown.
- * Сайт поддерживает: языки (частичная локализация): eng, rus; оформление: светлое, тёмное
- * Bootstrap, Entity Framework
+### ASP.NET Core MVC + MSSQL, MongoDB (+Bootstrap)
+ * Unauthenticated users are not allowed to create collections and items
+ * The administrator sees each user page and each collection as its creator-owner (for example, he can edit or create a new collection on behalf of the user from his page or add an item, etc.)
+ * Only the owner or admin can manage the collection (edit/add/delete)
+ * Sign in, sign up
+ * Each user has a page on which he manages the list of his collections (adding / changing / deleting), a collection page (a table with the ability to create / delete / edit an item). For the admin, this is the page of all collections
+ * Collection (by MSSQL): name, short description (markdown), theme from a fixed set, optional image (stored in the cloud, loaded by drag-n-drop)
+ * The collection has the ability to specify the fields that each item (by MongoDB) will have in it. A text field is a field with markdown formatting.
+ * Localization: eng, rus
+ * Decoration: light, dark
